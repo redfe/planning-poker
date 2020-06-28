@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { v4 as uuidv4 } from "uuid";
 import "./index.css";
 
 const points = ["0", "1", "2", "3", "5", "8", "13", "21", "34", "55", "?", "∞"];
@@ -91,44 +92,75 @@ class PlanningPoker extends React.Component {
     super(props);
     let myName = undefined;
     while (!myName) {
-      //myName = window.prompt('your name');
-      myName = "you";
+      myName = window.prompt("your name");
     }
-    let estimaters = [
-      { name: "demo", point: "5" },
-      { name: "demo2", point: "3" },
-      { name: "demo3", point: "?" },
-      { name: "demo4", point: "?" },
-      { name: "demo5", point: "?" },
-      { name: "demo6", point: "?" },
-      { name: "demo7", point: "?" },
-      { name: "demo8", point: "?" },
-    ];
-    estimaters = [];
+    const socket = setupWebsocket(window.location.hash.substring(1));
     this.state = {
       myName: myName,
-      mySelectedPoint: undefined,
-      estimaters: estimaters,
+      estimaters: [],
       isOend: false,
+      socket: socket,
     };
+    this.handleSelectionCardClick = this.handleSelectionCardClick.bind(this);
+    this.handleOpenButtonClick = this.handleOpenButtonClick.bind(this);
   }
 
-  handleOpenButtonClick() {
-    const estimaters = this.state.isOpend ? [] : this.state.estimaters.slice();
-    const isOpend =
-      this.state.estimaters.length === 0 ? false : !this.state.isOpend;
-    const mySelectedPoint = isOpend ? this.state.mySelectedPoint : undefined;
-    this.setState({
-      estimaters: estimaters,
-      isOpend: isOpend,
-      mySelectedPoint: mySelectedPoint,
+  componentDidMount() {
+    const hash = window.location.hash;
+    if (!hash) {
+      window.location.hash = uuidv4();
+    }
+    this.state.socket.on("do event", (event) => {
+      const subscriber = this.eventSubscribers[event.type];
+      if (subscriber) {
+        subscriber(event);
+      }
     });
   }
 
+  eventSubscribers = {
+    select: (event) => {
+      let estimaters = this.state.estimaters.slice();
+      let estimater = estimaters.find((e) => e.name === event.name);
+      if (!estimater) {
+        estimater = { name: event.name };
+        estimaters[estimaters.length] = estimater;
+      }
+      estimater["point"] = event.point;
+      this.setState({ estimaters: estimaters });
+    },
+    unselect: (event) => {
+      const estimaters = this.state.estimaters.filter(
+        (e) => e.name !== event.name
+      );
+      this.setState({ estimaters: estimaters });
+    },
+    open: (event) => {
+      this.setState({
+        isOpend: true,
+      });
+    },
+    return: (event) => {
+      this.setState({
+        estimaters: [],
+        isOpend: false,
+      });
+    },
+  };
+
+  handleOpenButtonClick() {
+    const isOpend =
+      this.state.estimaters.length === 0 ? false : !this.state.isOpend;
+    const eventType = isOpend ? "open" : "return";
+    this.state.socket.emit("do event", { type: eventType });
+  }
+
   handleSelectionCardClick(point) {
-    const isOff = this.state.mySelectedPoint === point;
+    const myEstimater = this.state.estimaters.find(
+      (e) => e.name === this.state.myName
+    );
+    const isOff = myEstimater && myEstimater.point === point;
     let estimaters = this.state.estimaters.slice();
-    let mySelectedPoint = isOff ? undefined : point;
     if (isOff) {
       estimaters = this.state.estimaters.filter(
         (e) => e.name !== this.state.myName
@@ -141,27 +173,39 @@ class PlanningPoker extends React.Component {
       }
       myEstimater["point"] = point;
     }
-    this.setState({ estimaters: estimaters, mySelectedPoint: mySelectedPoint });
+    const eventType = isOff ? "unselect" : "select";
+    this.state.socket.emit("do event", {
+      type: eventType,
+      name: this.state.myName,
+      point: point,
+    });
   }
 
   render() {
+    const myEstimater = this.state.estimaters.find(
+      (e) => e.name === this.state.myName
+    );
     return (
       <div>
         <Table
           estimaters={this.state.estimaters}
           isOpend={this.state.isOpend}
-          handleOpenButtonClick={() => this.handleOpenButtonClick()}
+          handleOpenButtonClick={this.handleOpenButtonClick}
         />
         <User name={this.state.myName} />
         <Selection
-          mySelectedPoint={this.state.mySelectedPoint}
-          handleSelectionCardClick={(point) =>
-            this.handleSelectionCardClick(point)
-          }
+          mySelectedPoint={myEstimater ? myEstimater.point : undefined}
+          handleSelectionCardClick={this.handleSelectionCardClick}
         />
       </div>
     );
   }
+}
+
+function setupWebsocket(roomId) {
+  return window.io(
+    "https://simple-websocket-server.herokuapp.com/?roomId=" + roomId
+  );
 }
 
 ReactDOM.render(<PlanningPoker />, document.getElementById("root"));
