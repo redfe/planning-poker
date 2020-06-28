@@ -107,8 +107,11 @@ class PlanningPoker extends React.Component {
 
   componentDidMount() {
     const hash = window.location.hash;
+
     if (!hash) {
-      window.location.hash = uuidv4();
+      const uuid = uuidv4();
+      window.location.hash = uuid;
+      window.history.replaceState('', '', "?" + uuid);
     }
     this.state.socket.on("do event", (event) => {
       const subscriber = this.eventSubscribers[event.type];
