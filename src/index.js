@@ -94,7 +94,7 @@ class PlanningPoker extends React.Component {
     while (!myName) {
       myName = window.prompt("your name");
     }
-    const socket = setupWebsocket(window.location.hash.substring(1));
+    const socket = setupWebsocket(this.getSetupedRoomId());
     this.state = {
       myName: myName,
       estimaters: [],
@@ -105,14 +105,20 @@ class PlanningPoker extends React.Component {
     this.handleOpenButtonClick = this.handleOpenButtonClick.bind(this);
   }
 
-  componentDidMount() {
-    const hash = window.location.hash;
-
-    if (!hash) {
+  getSetupedRoomId() {
+    const search = window.location.search;
+    let roomId;
+    if (!search) {
       const uuid = uuidv4();
       window.location.hash = uuid;
       window.history.replaceState('', '', "?" + uuid);
+      roomId = uuid;
+    } else {
+      roomId = search.substring(1);
     }
+    return roomId;
+  }
+  componentDidMount() {
     this.state.socket.on("do event", (event) => {
       const subscriber = this.eventSubscribers[event.type];
       if (subscriber) {
