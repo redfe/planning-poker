@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { v4 as uuidv4 } from "uuid";
 import "./index.css";
 
@@ -40,14 +41,33 @@ class User extends React.Component {
 }
 
 class Table extends React.Component {
+  createCopyText() {
+    const estimaters = this.props.estimaters;
+    if (estimaters.length === 0) {
+      return "empty.";
+    }
+    const now = new Date();
+    return (
+      "[" +
+      now.toLocaleDateString() +
+      " " +
+      now.toLocaleTimeString() +
+      "] " +
+      estimaters.sort((e1, e2) => e1.name > e2.name ? 1 : -1).reduce(
+        (acc, cur) => (acc ? acc + ", " : "") + cur.name + ":" + cur.point,
+        null
+      )
+    );
+  }
   render() {
+    const isOpend = this.props.isOpend;
     const estimaters = this.props.estimaters.map((estimater) => {
       return (
         <Estimater
           key={estimater.name}
           name={estimater.name}
           point={estimater.point}
-          isOpend={this.props.isOpend}
+          isOpend={isOpend}
         />
       );
     });
@@ -55,10 +75,23 @@ class Table extends React.Component {
       <div className="table">
         <div className="estimaters">{estimaters}</div>
         <OpenButton
-          isOpend={this.props.isOpend}
+          isOpend={isOpend}
           handleClick={() => this.props.handleOpenButtonClick()}
         />
+        {isOpend && estimaters.length > 0 ? (
+          <CopyButton text={this.createCopyText()} />
+        ) : null}
       </div>
+    );
+  }
+}
+
+class CopyButton extends React.Component {
+  render() {
+    return (
+      <CopyToClipboard text={this.props.text}>
+        <div className="copy-button">Copy</div>
+      </CopyToClipboard>
     );
   }
 }
@@ -111,7 +144,7 @@ class PlanningPoker extends React.Component {
     if (!search) {
       const uuid = uuidv4();
       window.location.hash = uuid;
-      window.history.replaceState('', '', "?" + uuid);
+      window.history.replaceState("", "", "?" + uuid);
       roomId = uuid;
     } else {
       roomId = search.substring(1);
