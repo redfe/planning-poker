@@ -54,7 +54,7 @@ class Table extends React.Component {
       now.toLocaleTimeString() +
       "] " +
       estimaters.sort((e1, e2) => e1.name > e2.name ? 1 : -1).reduce(
-        (acc, cur) => (acc ? acc + ", " : "") + cur.name + ":" + cur.point,
+        (acc, cur) => (acc ? acc + " " : "") + `${cur.name}(${cur.point})`,
         null
       )
     );
