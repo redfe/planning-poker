@@ -1,10 +1,23 @@
+body {
+    background-color: rgba(0,0,0,.3);
+    background-image: url(/crop011kumakichi0327.jpg);
+    background-repeat: repeat-y;
+    background-size: cover;
+    background-blend-mode: color;
+    font-family: "M PLUS 1p";
+}
+
 #root>div {
     margin: 0 auto;
     width: 42rem;
 }
 
+h1 {
+    color: #8db8bf;
+}
 .user {
     text-align: center;
+    color: white;
     padding: 2rem 0;
     font-size: 2rem;
 }
@@ -12,9 +25,8 @@
 .card {
     text-align: center;
     border-radius: .5rem;
-    background-color: white;
-    border-style: solid;
-    border-color: rgb(25, 6, 110);
+    background-color: #F3EDE2;
+    box-shadow: 0 3px 0px 0px rgba(0,0,0,.15);
 }
 
 .selection {
@@ -28,6 +40,11 @@
     width: 1.5rem;
     cursor: pointer;
     border-width: 2px;
+    transition: background-color 0.2s ease-in-out 0s;
+}
+
+.selection .card:hover {
+    background-color: #e8bcbc;
 }
 
 .selection .card.selected {
@@ -35,12 +52,13 @@
 }
 
 .table {
-    background-color: rgb(14, 121, 14);
+    background-color: #87ad83bf;
     padding: 1rem 1rem 0 0;
-    border: 10px solid rgb(102, 71, 5);
     border-radius: 20px;
     height: 400px;
     position: relative;
+    box-shadow: 0 0 5px 5px rgba(0,0,0,.15);
+    margin-top: 2rem;
 }
 
 .table .estimaters {
@@ -62,20 +80,28 @@
     top: 0;
     right: 0;
     background-color: silver;
-    border-radius: 0 .5rem;
+    border-radius: 0 1.2rem;
     font-size: .5rem;
     padding: .25rem;
     cursor: pointer;
+    text-align: center;
+    width: 2rem;
+    box-shadow: -1px 3px 3px 0 rgba(0,0,0,.15);
+}
+.table .copy-button:active {
+    transform: translateY(2px) translateX(-2px);
+    box-shadow: 0 2px 0 rgba(0,0,0,.15);
 }
 
 .estimater .card {
     padding-top: 1rem;
     height: 4rem;
     font-size: 2rem;
-    border-width: 3px;
+    transition: background-color 0.2s ease-in-out 0s;
 }
+
 .estimater.closed .card {
-    background-color: rgb(56, 32, 161);
+    background-color: #46613c;
 }
 
 .estimater-name {
@@ -87,10 +113,15 @@
     width: 15rem;
     text-align: center;
     font-size: 2rem;
-    border: 1px solid gray;
     border-radius: .5rem;
     background-color: silver;
     cursor: pointer;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,.15);
+    transition: transform 0.1s ease-in-out 0s;
+}
+.open-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 rgba(0,0,0,.15);
 }
 
 .show-button:hover {

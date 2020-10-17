@@ -229,6 +229,7 @@ class PlanningPoker extends React.Component {
     );
     return (
       <div>
+        <h1>Planning Poker</h1>
         <Table
           estimaters={this.state.estimaters}
           isOpend={this.state.isOpend}
