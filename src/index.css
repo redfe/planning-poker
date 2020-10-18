@@ -1,9 +1,7 @@
 body {
-    background-color: rgba(0,0,0,.3);
     background-image: url(/crop011kumakichi0327.jpg);
     background-repeat: repeat-y;
     background-size: cover;
-    background-blend-mode: color;
     font-family: "M PLUS 1p";
 }
 
@@ -13,7 +11,7 @@ body {
 }
 
 h1 {
-    color: #8db8bf;
+    color: #0c44e84a;
 }
 .user {
     text-align: center;
@@ -53,12 +51,12 @@ h1 {
 }
 
 .table {
-    background-color: #87ad83bf;
+    background: linear-gradient(140deg, #6fa27f 30%, #6fa27fa0);
     padding: 1rem 1rem 0 0;
     border-radius: 20px;
     height: 400px;
     position: relative;
-    box-shadow: 0 0 5px 5px rgba(0,0,0,.15);
+    box-shadow: 0 0 3px 3px rgba(0,0,0,.15);
     margin-top: 2rem;
 }
 
@@ -103,7 +101,7 @@ h1 {
 }
 
 .estimater.closed .card {
-    background-color: #46613c;
+    background-color: #260fa0;
 }
 
 .estimater-name {
