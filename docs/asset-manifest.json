@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/planning-poker/static/css/main.10dddcce.chunk.css",
-    "main.js": "/planning-poker/static/js/main.89bd2124.chunk.js",
-    "main.js.map": "/planning-poker/static/js/main.89bd2124.chunk.js.map",
+    "main.css": "/planning-poker/static/css/main.44edd098.chunk.css",
+    "main.js": "/planning-poker/static/js/main.7a52b559.chunk.js",
+    "main.js.map": "/planning-poker/static/js/main.7a52b559.chunk.js.map",
     "runtime-main.js": "/planning-poker/static/js/runtime-main.43b10559.js",
     "runtime-main.js.map": "/planning-poker/static/js/runtime-main.43b10559.js.map",
-    "static/js/2.6c90752a.chunk.js": "/planning-poker/static/js/2.6c90752a.chunk.js",
-    "static/js/2.6c90752a.chunk.js.map": "/planning-poker/static/js/2.6c90752a.chunk.js.map",
+    "static/js/2.e5596e4c.chunk.js": "/planning-poker/static/js/2.e5596e4c.chunk.js",
+    "static/js/2.e5596e4c.chunk.js.map": "/planning-poker/static/js/2.e5596e4c.chunk.js.map",
     "index.html": "/planning-poker/index.html",
-    "static/css/main.10dddcce.chunk.css.map": "/planning-poker/static/css/main.10dddcce.chunk.css.map",
-    "static/js/2.6c90752a.chunk.js.LICENSE.txt": "/planning-poker/static/js/2.6c90752a.chunk.js.LICENSE.txt",
+    "static/css/main.44edd098.chunk.css.map": "/planning-poker/static/css/main.44edd098.chunk.css.map",
+    "static/js/2.e5596e4c.chunk.js.LICENSE.txt": "/planning-poker/static/js/2.e5596e4c.chunk.js.LICENSE.txt",
     "static/media/index.css": "/planning-poker/static/media/crop011kumakichi0327.b8ae331a.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.43b10559.js",
-    "static/js/2.6c90752a.chunk.js",
-    "static/css/main.10dddcce.chunk.css",
-    "static/js/main.89bd2124.chunk.js"
+    "static/js/2.e5596e4c.chunk.js",
+    "static/css/main.44edd098.chunk.css",
+    "static/js/main.7a52b559.chunk.js"
   ]
 }
