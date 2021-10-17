@@ -3,20 +3,9 @@ import ReactDOM from "react-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { v4 as uuidv4 } from "uuid";
 import "./index.css";
+import { Card } from "./components/Card"
 
 const points = ["0", "1", "2", "3", "5", "8", "13", "21", "34", "55", "?", "∞"];
-
-class Card extends React.Component {
-  render() {
-    const point = this.props.point;
-    const className = "card" + (this.props.isSelected ? " selected" : "");
-    return (
-      <div className={className} onClick={this.props.handleClick}>
-        {point}
-      </div>
-    );
-  }
-}
 
 class Selection extends React.Component {
   render() {
@@ -24,6 +13,7 @@ class Selection extends React.Component {
       const isSelected = this.props.mySelectedPoint === point;
       return (
         <Card
+          isSelectable={true}
           isSelected={isSelected}
           key={point}
           point={point}
@@ -102,7 +92,7 @@ class Estimater extends React.Component {
     const className = "estimater " + (this.props.isOpend ? "opend" : "closed");
     return (
       <div className={className}>
-        <Card point={point} />
+        <Card isSelectable={false} isClosed={!this.props.isOpend} size="large" point={point} />
         <div className="estimater-name">{this.props.name}</div>
       </div>
     );
