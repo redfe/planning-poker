@@ -4,26 +4,8 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { v4 as uuidv4 } from "uuid";
 import "./index.css";
 import { Card } from "./components/Card"
+import { CardSelection } from "./components/CardSelection"
 
-const points = ["0", "1", "2", "3", "5", "8", "13", "21", "34", "55", "?", "∞"];
-
-class Selection extends React.Component {
-  render() {
-    const cards = points.map((point) => {
-      const isSelected = this.props.mySelectedPoint === point;
-      return (
-        <Card
-          isSelectable={true}
-          isSelected={isSelected}
-          key={point}
-          point={point}
-          handleClick={() => this.props.handleSelectionCardClick(point)}
-        />
-      );
-    });
-    return <div className="selection">{cards}</div>;
-  }
-}
 class User extends React.Component {
   render() {
     return <div className="user">{this.props.name}</div>;
@@ -226,9 +208,9 @@ class PlanningPoker extends React.Component {
           handleOpenButtonClick={this.handleOpenButtonClick}
         />
         <User name={this.state.myName} />
-        <Selection
-          mySelectedPoint={myEstimater ? myEstimater.point : undefined}
-          handleSelectionCardClick={this.handleSelectionCardClick}
+        <CardSelection
+          selectedPoint={myEstimater ? myEstimater.point : undefined}
+          handleCardClick={this.handleSelectionCardClick}
         />
       </div>
     );

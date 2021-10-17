@@ -13,7 +13,7 @@ export const Card = ({ size, point, isSelectable, isSelected, isClosed, handleCl
         (isSelected ? "card-selected" : ""),
         (isClosed ? "card-closed" : "")
       ].join(" ")}
-      onClick={handleClick}
+      onClick={() => handleClick(point)}
       {...props}
     >
       {isClosed ? "" : point}
@@ -43,7 +43,7 @@ Card.propTypes = {
    */
   isClosed: PropTypes.bool,
   /**
-   * クリック時の動作
+   * クリック時の動作。引き数: point
    */
   handleClick: PropTypes.func,
 };
