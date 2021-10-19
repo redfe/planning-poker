@@ -1,18 +1,18 @@
 import React from 'react';
 
-import { User } from './User';
+import { CopyButton } from './CopyButton';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/User',
-  component: User,
+  title: 'Components/CopyButton',
+  component: CopyButton,
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = (args) => <User {...args} />;
+const Template = (args) => <CopyButton {...args} />;
 
-export const DefaultUser = Template.bind({});
+export const DefaultCopyButton = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-DefaultUser.args = {
-  name: "山田"
+DefaultCopyButton.args = {
+  text: "あいうえお"
 };

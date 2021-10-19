@@ -6,6 +6,7 @@ import "./index.css";
 import { Card } from "./components/Card"
 import { CardSelection } from "./components/CardSelection"
 import { User } from "./components/User"
+import { CopyButton } from "./components/CopyButton"
 
 
 class Table extends React.Component {
@@ -50,16 +51,6 @@ class Table extends React.Component {
           <CopyButton text={this.createCopyText()} />
         ) : null}
       </div>
-    );
-  }
-}
-
-class CopyButton extends React.Component {
-  render() {
-    return (
-      <CopyToClipboard text={this.props.text}>
-        <div className="copy-button">Copy</div>
-      </CopyToClipboard>
     );
   }
 }

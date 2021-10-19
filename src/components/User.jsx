@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './User.css';
 
 export const User = ({ name, ...props }) => {
-  return < div className="user" {...props}>{name}</div >;
+  return <div className="user" {...props}>{name}</div>;
 }
 
 User.propTypes = {
