@@ -5,12 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import "./index.css";
 import { Card } from "./components/Card"
 import { CardSelection } from "./components/CardSelection"
+import { User } from "./components/User"
 
-class User extends React.Component {
-  render() {
-    return <div className="user">{this.props.name}</div>;
-  }
-}
 
 class Table extends React.Component {
   createCopyText() {

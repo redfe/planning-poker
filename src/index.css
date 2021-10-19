@@ -14,22 +14,6 @@ h1 {
     color: #0c44e84a;
 }
 
-.user {
-    text-align: center;
-    color: white;
-    padding: 2rem 0;
-    font-size: 2rem;
-}
-
-.selection {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.selection .card {
-    margin: 0 0 .75rem .75rem;
-}
-
 .table {
     background: linear-gradient(140deg, #6fa27f 30%, #6fa27fa0);
     padding: 1rem 1rem 0 0;
