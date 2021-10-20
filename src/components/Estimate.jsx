@@ -6,7 +6,7 @@ import './Estimate.css';
 export const Estimate = ({ isOpend, point, name, ...props }) => {
   return (
     <div className={"estimate"}>
-      <Card isSelectable={false} isClosed={!isOpend} size="large" point={isOpend ? String(point) : undefined} />
+      <Card isSelectable={false} isClosed={!isOpend} size="large" point={isOpend ? String(point) : ""} />
       <div className="estimate-name">{name}</div>
     </div>
   );

@@ -1,0 +1,13 @@
+.page {
+    font-family: "M PLUS 1p";
+    padding: 0;
+}
+
+.page>div {
+    margin: 0 auto;
+    width: 40rem;
+}
+
+.page h1 {
+    color: #0c44e84a;
+}

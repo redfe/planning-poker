@@ -2,14 +2,4 @@ body {
     background-image: url(./assets/crop011kumakichi0327.jpg);
     background-repeat: repeat-y;
     background-size: cover;
-    font-family: "M PLUS 1p";
-}
-
-#root>div {
-    margin: 0 auto;
-    width: 42rem;
-}
-
-h1 {
-    color: #0c44e84a;
 }

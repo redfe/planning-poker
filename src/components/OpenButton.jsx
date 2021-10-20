@@ -19,6 +19,5 @@ OpenButton.propTypes = {
 };
 
 OpenButton.defaultProps = {
-  isOpend: false,
-  handleClick: () => { },
+  isOpend: false
 };

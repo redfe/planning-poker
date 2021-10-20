@@ -2,9 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { v4 as uuidv4 } from "uuid";
 import "./index.css";
-import { Table } from "./components/Table"
-import { User } from "./components/User"
-import { CardSelection } from "./components/CardSelection"
+import { Page } from "./pages/Page"
 
 class PlanningPoker extends React.Component {
   constructor(props) {
@@ -54,7 +52,7 @@ class PlanningPoker extends React.Component {
         estimater = { name: event.name };
         estimaters[estimaters.length] = estimater;
       }
-      estimater["point"] = event.point;
+      estimater["point"] = String(event.point);
       this.setState({ estimaters: estimaters });
     },
     unselect: (event) => {
@@ -99,34 +97,24 @@ class PlanningPoker extends React.Component {
         myEstimater = { name: this.state.myName };
         estimaters[estimaters.length] = myEstimater;
       }
-      myEstimater["point"] = point;
+      myEstimater["point"] = String(point);
     }
     const eventType = isOff ? "unselect" : "select";
     this.state.socket.emit("do event", {
       type: eventType,
       name: this.state.myName,
-      point: point,
+      point: String(point),
     });
   }
 
   render() {
-    const myEstimater = this.state.estimaters.find(
-      (e) => e.name === this.state.myName
-    );
     return (
-      <div>
-        <h1>Planning Poker</h1>
-        <Table
-          estimaters={this.state.estimaters}
-          isOpend={this.state.isOpend}
-          handleOpenButtonClick={this.handleOpenButtonClick}
-        />
-        <User name={this.state.myName} />
-        <CardSelection
-          selectedPoint={myEstimater ? myEstimater.point : undefined}
-          handleCardClick={this.handleSelectionCardClick}
-        />
-      </div>
+      <Page
+        userName={this.state.myName}
+        isOpend={this.state.isOpend}
+        estimaters={this.state.estimaters}
+        handleOpenButtonClick={this.handleOpenButtonClick}
+        handleSelectionCardClick={this.handleSelectionCardClick} />
     );
   }
 }
