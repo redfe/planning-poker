@@ -31,14 +31,3 @@ h1 {
     height: 70%;
 }
 
-.table .estimater {
-    margin: 0 0 2rem 2rem;
-    width: 3.5rem;
-    display: inline-block;
-}
-
-.estimater-name {
-    color: white;
-    text-align: center;
-}
-

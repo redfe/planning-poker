@@ -7,6 +7,7 @@ import { CardSelection } from "./components/CardSelection"
 import { User } from "./components/User"
 import { CopyButton } from "./components/CopyButton"
 import { OpenButton } from "./components/OpenButton"
+import { Estimate } from "./components/Estimate"
 
 class Table extends React.Component {
   createCopyText() {
@@ -31,7 +32,7 @@ class Table extends React.Component {
     const isOpend = this.props.isOpend;
     const estimaters = this.props.estimaters.map((estimater) => {
       return (
-        <Estimater
+        <Estimate
           key={estimater.name}
           name={estimater.name}
           point={estimater.point}
@@ -49,19 +50,6 @@ class Table extends React.Component {
         {isOpend && estimaters.length > 0 ? (
           <CopyButton text={this.createCopyText()} />
         ) : null}
-      </div>
-    );
-  }
-}
-
-class Estimater extends React.Component {
-  render() {
-    const point = this.props.isOpend ? this.props.point : undefined;
-    const className = "estimater " + (this.props.isOpend ? "opend" : "closed");
-    return (
-      <div className={className}>
-        <Card isSelectable={false} isClosed={!this.props.isOpend} size="large" point={String(point)} />
-        <div className="estimater-name">{this.props.name}</div>
       </div>
     );
   }

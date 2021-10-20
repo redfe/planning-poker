@@ -1,0 +1,14 @@
+
+.estimate {
+    margin: 0 0 2rem 2rem;
+    width: 3.5rem;
+    display: inline-block;
+}
+
+.estimate .card {
+    margin: 0 auto;
+}
+.estimate-name {
+    color: white;
+    text-align: center;
+}
