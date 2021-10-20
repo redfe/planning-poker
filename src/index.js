@@ -1,13 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import { v4 as uuidv4 } from "uuid";
 import "./index.css";
 import { Card } from "./components/Card"
 import { CardSelection } from "./components/CardSelection"
 import { User } from "./components/User"
 import { CopyButton } from "./components/CopyButton"
-
+import { OpenButton } from "./components/OpenButton"
 
 class Table extends React.Component {
   createCopyText() {
@@ -61,19 +60,8 @@ class Estimater extends React.Component {
     const className = "estimater " + (this.props.isOpend ? "opend" : "closed");
     return (
       <div className={className}>
-        <Card isSelectable={false} isClosed={!this.props.isOpend} size="large" point={point} />
+        <Card isSelectable={false} isClosed={!this.props.isOpend} size="large" point={String(point)} />
         <div className="estimater-name">{this.props.name}</div>
-      </div>
-    );
-  }
-}
-
-class OpenButton extends React.Component {
-  render() {
-    const className = "open-button";
-    return (
-      <div className={className} onClick={() => this.props.handleClick()}>
-        {this.props.isOpend ? "return" : "open"}
       </div>
     );
   }

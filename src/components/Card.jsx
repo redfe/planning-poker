@@ -29,7 +29,7 @@ Card.propTypes = {
   /**
    * ポイント数
    */
-  point: PropTypes.number,
+  point: PropTypes.string,
   /**
    * 選択可能かどうか?
    */

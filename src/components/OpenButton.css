@@ -1,0 +1,17 @@
+.openbutton {
+    margin: 2rem auto;
+    width: 15rem;
+    text-align: center;
+    font-size: 2rem;
+    border-radius: .5rem;
+    background-color: silver;
+    cursor: pointer;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, .15);
+    transition: transform 0.1s ease-in-out 0s;
+    user-select: none;
+}
+
+.openbutton:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, .15);
+}

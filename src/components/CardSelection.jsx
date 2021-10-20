@@ -13,7 +13,7 @@ export const CardSelection = ({ selectedPoint, handleCardClick, ...props }) => {
         isSelectable={true}
         isSelected={isSelected}
         key={point}
-        point={point}
+        point={String(point)}
         handleClick={handleCardClick}
       />
     );
