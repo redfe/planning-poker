@@ -6,6 +6,7 @@ import { CardSelection } from './CardSelection';
 export default {
   title: 'Components/CardSelection',
   component: CardSelection,
+  argTypes: { handleCardClick: { action: 'clicked' } },
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -15,5 +16,4 @@ export const CardSelectionArea = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 CardSelectionArea.args = {
   selectedPoint: "8",
-  handleCardClick: () => { }
 };

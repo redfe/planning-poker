@@ -6,6 +6,7 @@ import { OpenButton } from './OpenButton';
 export default {
   title: 'Components/OpenButton',
   component: OpenButton,
+  argTypes: { handleClick: { action: "clicked" } }
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
