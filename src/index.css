@@ -13,21 +13,3 @@ body {
 h1 {
     color: #0c44e84a;
 }
-
-.table {
-    background: linear-gradient(140deg, #6fa27f 30%, #6fa27fa0);
-    padding: 1rem 1rem 0 0;
-    border-radius: 20px;
-    height: 400px;
-    position: relative;
-    box-shadow: 0 0 3px 3px rgba(0, 0, 0, .15);
-    margin-top: 2rem;
-}
-
-.table .estimaters {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 70%;
-}
-

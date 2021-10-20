@@ -2,58 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { v4 as uuidv4 } from "uuid";
 import "./index.css";
-import { Card } from "./components/Card"
-import { CardSelection } from "./components/CardSelection"
+import { Table } from "./components/Table"
 import { User } from "./components/User"
-import { CopyButton } from "./components/CopyButton"
-import { OpenButton } from "./components/OpenButton"
-import { Estimate } from "./components/Estimate"
-
-class Table extends React.Component {
-  createCopyText() {
-    const estimaters = this.props.estimaters;
-    if (estimaters.length === 0) {
-      return "empty.";
-    }
-    const now = new Date();
-    return (
-      "[" +
-      now.toLocaleDateString() +
-      " " +
-      now.toLocaleTimeString() +
-      "] " +
-      estimaters.sort((e1, e2) => e1.name > e2.name ? 1 : -1).reduce(
-        (acc, cur) => (acc ? acc + " " : "") + `${cur.name}(${cur.point})`,
-        null
-      )
-    );
-  }
-  render() {
-    const isOpend = this.props.isOpend;
-    const estimaters = this.props.estimaters.map((estimater) => {
-      return (
-        <Estimate
-          key={estimater.name}
-          name={estimater.name}
-          point={estimater.point}
-          isOpend={isOpend}
-        />
-      );
-    });
-    return (
-      <div className="table">
-        <div className="estimaters">{estimaters}</div>
-        <OpenButton
-          isOpend={isOpend}
-          handleClick={() => this.props.handleOpenButtonClick()}
-        />
-        {isOpend && estimaters.length > 0 ? (
-          <CopyButton text={this.createCopyText()} />
-        ) : null}
-      </div>
-    );
-  }
-}
+import { CardSelection } from "./components/CardSelection"
 
 class PlanningPoker extends React.Component {
   constructor(props) {
