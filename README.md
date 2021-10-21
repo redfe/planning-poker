@@ -1,5 +1,13 @@
 # planning-poker
 
+リモートでプランニングポーカーを実施するためのツールです。
+
+## デモ
+
+https://redfe.github.io/planning-poker/
+
+# React
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
