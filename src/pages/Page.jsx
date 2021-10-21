@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table } from '../components/Table'
-import { User } from '../components/User'
-import { CardSelection } from '../components/CardSelection'
+import { Table } from '../components/table/Table'
+import { User } from '../components/user/User'
+import { CardSelection } from '../components/card-selection/CardSelection'
 import './Page.css'
 
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Estimate } from './Estimate'
-import { OpenButton } from './OpenButton'
-import { CopyButton } from './CopyButton'
+import { Estimate } from '../estimate/Estimate'
+import { OpenButton } from '../open-button/OpenButton'
+import { CopyButton } from '../copy-button/CopyButton'
 import './Table.css';
 
 export const Table = ({ isOpend, estimaters, handleOpenButtonClick, ...props }) => {

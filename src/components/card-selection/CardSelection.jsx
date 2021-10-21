@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from "./Card"
+import { Card } from "../card/Card"
 import "./CardSelection.css"
 
 const points = ["0", "1", "2", "3", "5", "8", "13", "21", "34", "55", "?", "∞"];
