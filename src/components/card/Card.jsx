@@ -10,7 +10,7 @@ export const Card = ({ size, point, isSelectable, isSelected, isClosed, handleCl
         "card",
         ("card-" + size),
         (isSelectable ? "card-selectable" : ""),
-        (isSelected ? "card-selected" : ""),
+        (isSelected ? "card-selected" : "card-notselected"),
         (isClosed ? "card-closed" : "")
       ].join(" ")}
       onClick={() => handleClick(point)}

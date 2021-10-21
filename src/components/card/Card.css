@@ -12,7 +12,7 @@
     cursor: pointer;
 }
 
-.card-selectable:hover {
+.card-notselected:hover {
     background-color: #e8bcbc;
 }
 
