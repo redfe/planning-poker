@@ -3,16 +3,16 @@ import { v4 as uuidv4 } from 'uuid';
 import { Page } from './pages/Page';
 import './App.css';
 
-export const App = props => {
+export const App = (props) => {
   const [myName, setMyName] = useState();
   const [estimaters, setEstimaters] = useState([]);
   const [isOpend, setIsOpend] = useState(false);
   const [socket, setSocket] = useState(undefined);
 
   const eventSubscribers = {
-    select: event => {
+    select: (event) => {
       const newEstimaters = estimaters.slice();
-      let estimater = newEstimaters.find(e => e.name === event.name);
+      let estimater = newEstimaters.find((e) => e.name === event.name);
       if (!estimater) {
         estimater = { name: event.name };
         newEstimaters[newEstimaters.length] = estimater;
@@ -20,8 +20,8 @@ export const App = props => {
       estimater['point'] = String(event.point);
       setEstimaters(newEstimaters);
     },
-    unselect: event => {
-      const newEstimaters = estimaters.filter(e => e.name !== event.name);
+    unselect: (event) => {
+      const newEstimaters = estimaters.filter((e) => e.name !== event.name);
       setEstimaters(newEstimaters);
     },
     open: () => {
@@ -52,7 +52,7 @@ export const App = props => {
     if (!socket) {
       return;
     }
-    socket.on('do event', event => {
+    socket.on('do event', (event) => {
       const subscriber = eventSubscribers[event.type];
       if (subscriber) {
         subscriber(event);
@@ -67,14 +67,14 @@ export const App = props => {
     socket.emit('do event', { type: eventType });
   };
 
-  const handleSelectionCardClick = point => {
-    const myEstimater = estimaters.find(e => e.name === myName);
+  const handleSelectionCardClick = (point) => {
+    const myEstimater = estimaters.find((e) => e.name === myName);
     const isOff = myEstimater && myEstimater.point === point;
     let newEstimaters = estimaters.slice();
     if (isOff) {
-      newEstimaters = estimaters.filter(e => e.name !== myName);
+      newEstimaters = estimaters.filter((e) => e.name !== myName);
     } else {
-      let myEstimater = estimaters.find(e => e.name === myName);
+      let myEstimater = estimaters.find((e) => e.name === myName);
       if (!myEstimater) {
         myEstimater = { name: myName };
         newEstimaters[newEstimaters.length] = myEstimater;
@@ -101,9 +101,7 @@ export const App = props => {
 };
 
 function setupWebsocket(roomId) {
-  return window.io(
-    'https://simple-websocket-server.herokuapp.com/?roomId=' + roomId
-  );
+  return window.io('https://simple-websocket-server.herokuapp.com/?roomId=' + roomId);
 }
 
 function getSetupedRoomId() {

@@ -14,9 +14,7 @@ export const Page = ({
   ...props
 }) => {
   console.log('begin render Page.');
-  const myEstimater = estimaters
-    ? estimaters.find(e => e.name === userName)
-    : undefined;
+  const myEstimater = estimaters ? estimaters.find((e) => e.name === userName) : undefined;
   return (
     <div className="page">
       <div>

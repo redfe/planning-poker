@@ -9,7 +9,7 @@ export const CardSelection = ({ selectedPoint, handleCardClick, ...props }) => {
   console.log('begin render CardSelection.');
   return (
     <div className="card-selection">
-      {points.map(point => {
+      {points.map((point) => {
         return (
           <Card
             isSelectable={true}

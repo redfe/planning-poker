@@ -9,7 +9,7 @@ export default {
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = args => <Table {...args} />;
+const Template = (args) => <Table {...args} />;
 
 export const ClosedTable = Template.bind({});
 ClosedTable.args = {

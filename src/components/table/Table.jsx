@@ -5,18 +5,13 @@ import { OpenButton } from '../open-button/OpenButton';
 import { CopyButton } from '../copy-button/CopyButton';
 import './Table.css';
 
-export const Table = ({
-  isOpend,
-  estimaters,
-  handleOpenButtonClick,
-  ...props
-}) => {
+export const Table = ({ isOpend, estimaters, handleOpenButtonClick, ...props }) => {
   console.log('begin render Table.');
   return (
     <div className="table">
       <div className="table-estimaters">
         {Array.isArray(estimaters)
-          ? estimaters.map(estimater => (
+          ? estimaters.map((estimater) => (
               <Estimate
                 key={estimater.name}
                 name={estimater.name}
@@ -47,10 +42,7 @@ function createCopyText(estimaters) {
     '] ' +
     estimaters
       .sort((e1, e2) => (e1.name > e2.name ? 1 : -1))
-      .reduce(
-        (acc, cur) => (acc ? acc + ' ' : '') + `${cur.name}(${cur.point})`,
-        null
-      )
+      .reduce((acc, cur) => (acc ? acc + ' ' : '') + `${cur.name}(${cur.point})`, null)
   );
 }
 
