@@ -17,6 +17,10 @@ OpenButton.propTypes = {
    * コピー対象のテキスト
    */
   isOpend: PropTypes.bool,
+  /**
+   * クリック時の動作
+   */
+  handleClick: PropTypes.func,
 };
 
 OpenButton.defaultProps = {

@@ -5,7 +5,7 @@ import { OpenButton } from '../open-button/OpenButton';
 import { CopyButton } from '../copy-button/CopyButton';
 import './Table.css';
 
-export const Table = ({ isOpend, estimaters, handleOpenButtonClick, ...props }) => {
+export const Table = ({ isOpend, estimaters, handleOpenButtonClick }) => {
   console.log('begin render Table.');
   return (
     <div className="table">

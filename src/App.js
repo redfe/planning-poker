@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Page } from './pages/Page';
 import './App.css';
 
-export const App = (props) => {
+export const App = () => {
   const [myName, setMyName] = useState();
   const [estimaters, setEstimaters] = useState([]);
   const [isOpend, setIsOpend] = useState(false);

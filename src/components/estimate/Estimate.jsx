@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card } from '../card/Card';
 import './Estimate.css';
 
-export const Estimate = ({ isOpend, point, name, ...props }) => {
+export const Estimate = ({ isOpend, point, name }) => {
   return (
     <div className={'estimate'}>
       <Card

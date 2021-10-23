@@ -11,7 +11,6 @@ export const Page = ({
   estimaters,
   handleOpenButtonClick,
   handleSelectionCardClick,
-  ...props
 }) => {
   console.log('begin render Page.');
   const myEstimater = estimaters ? estimaters.find((e) => e.name === userName) : undefined;
