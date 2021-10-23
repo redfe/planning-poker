@@ -9,10 +9,10 @@ export default {
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = (args) => <CopyButton {...args} />;
+const Template = args => <CopyButton {...args} />;
 
 export const DefaultCopyButton = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 DefaultCopyButton.args = {
-  text: "あいうえお"
+  text: 'あいうえお',
 };

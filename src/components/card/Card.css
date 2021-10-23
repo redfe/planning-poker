@@ -1,46 +1,46 @@
 .card {
-    text-align: center;
-    border-radius: .5rem;
-    background-color: #F3EDE2;
-    box-shadow: 0 3px 0px 0px rgba(0, 0, 0, .15);
-    user-select: none;
-    transition: background-color 0.2s ease-in-out 0s;
+  text-align: center;
+  border-radius: 0.5rem;
+  background-color: #f3ede2;
+  box-shadow: 0 3px 0px 0px rgba(0, 0, 0, 0.15);
+  user-select: none;
+  transition: background-color 0.2s ease-in-out 0s;
 }
 
 .card-selectable {
-    user-select: auto;
-    cursor: pointer;
+  user-select: auto;
+  cursor: pointer;
 }
 
 .card-selectable.card-notselected:hover {
-    background-color: #e8bcbc;
+  background-color: #e8bcbc;
 }
 
 .card-selected {
-    background-color: rgb(241, 127, 127);
+  background-color: rgb(241, 127, 127);
 }
 
 .card-small {
-    width: 2rem;
-    line-height: 3rem;
-    height: 3rem;
-    font-size: 1rem;
+  width: 2rem;
+  line-height: 3rem;
+  height: 3rem;
+  font-size: 1rem;
 }
 
 .card-medium {
-    width: 2.5rem;
-    line-height: 3.75rem;
-    height: 3.75rem;
-    font-size: 1.25rem;
+  width: 2.5rem;
+  line-height: 3.75rem;
+  height: 3.75rem;
+  font-size: 1.25rem;
 }
 
 .card-large {
-    width: 3.125rem;
-    line-height: 4.67rem;
-    height: 4.67rem;
-    font-size: 1.56rem;
+  width: 3.125rem;
+  line-height: 4.67rem;
+  height: 4.67rem;
+  font-size: 1.56rem;
 }
 
 .card-closed {
-    background-color: #260fa0;
+  background-color: #260fa0;
 }

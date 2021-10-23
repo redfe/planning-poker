@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import './OpenButton.css';
 
 export const OpenButton = ({ isOpend, handleClick }) => {
-  console.log("begin render OpenButton.");
-  const className = "openbutton";
+  console.log('begin render OpenButton.');
+  const className = 'openbutton';
   return (
     <div className={className} onClick={handleClick}>
-      {isOpend ? "return" : "open"}
+      {isOpend ? 'return' : 'open'}
     </div>
   );
-}
+};
 
 OpenButton.propTypes = {
   /**
@@ -20,5 +20,5 @@ OpenButton.propTypes = {
 };
 
 OpenButton.defaultProps = {
-  isOpend: false
+  isOpend: false,
 };

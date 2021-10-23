@@ -1,50 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Estimate } from '../estimate/Estimate'
-import { OpenButton } from '../open-button/OpenButton'
-import { CopyButton } from '../copy-button/CopyButton'
+import { Estimate } from '../estimate/Estimate';
+import { OpenButton } from '../open-button/OpenButton';
+import { CopyButton } from '../copy-button/CopyButton';
 import './Table.css';
 
-export const Table = ({ isOpend, estimaters, handleOpenButtonClick, ...props }) => {
-  console.log("begin render Table.");
+export const Table = ({
+  isOpend,
+  estimaters,
+  handleOpenButtonClick,
+  ...props
+}) => {
+  console.log('begin render Table.');
   return (
     <div className="table">
       <div className="table-estimaters">
-        {Array.isArray(estimaters) ? estimaters.map((estimater) =>
-          <Estimate
-            key={estimater.name}
-            name={estimater.name}
-            point={estimater.point}
-            isOpend={isOpend}
-          />
-        ) : undefined}
+        {Array.isArray(estimaters)
+          ? estimaters.map(estimater => (
+              <Estimate
+                key={estimater.name}
+                name={estimater.name}
+                point={estimater.point}
+                isOpend={isOpend}
+              />
+            ))
+          : undefined}
       </div>
-      <OpenButton
-        isOpend={isOpend}
-        handleClick={handleOpenButtonClick}
-      />
-      {isOpend && estimaters && estimaters.length > 0 ?
+      <OpenButton isOpend={isOpend} handleClick={handleOpenButtonClick} />
+      {isOpend && estimaters && estimaters.length > 0 ? (
         <CopyButton text={createCopyText(estimaters)} />
-        : null}
+      ) : null}
     </div>
   );
-}
+};
 
 function createCopyText(estimaters) {
   if (!estimaters || estimaters.length === 0) {
-    return "empty.";
+    return 'empty.';
   }
   const now = new Date();
   return (
-    "[" +
+    '[' +
     now.toLocaleDateString() +
-    " " +
+    ' ' +
     now.toLocaleTimeString() +
-    "] " +
-    estimaters.sort((e1, e2) => e1.name > e2.name ? 1 : -1).reduce(
-      (acc, cur) => (acc ? acc + " " : "") + `${cur.name}(${cur.point})`,
-      null
-    )
+    '] ' +
+    estimaters
+      .sort((e1, e2) => (e1.name > e2.name ? 1 : -1))
+      .reduce(
+        (acc, cur) => (acc ? acc + ' ' : '') + `${cur.name}(${cur.point})`,
+        null
+      )
   );
 }
 
@@ -60,8 +66,7 @@ Table.propTypes = {
   /**
    *  OPENボタンクリック時の動作
    */
-  handleOpenButtonClick: PropTypes.func
+  handleOpenButtonClick: PropTypes.func,
 };
 
-Table.defaultProps = {
-};
+Table.defaultProps = {};

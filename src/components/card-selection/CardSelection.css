@@ -1,8 +1,8 @@
 .card-selection {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .card-selection .card {
-    margin: 0 0 .75rem .75rem;
+  margin: 0 0 0.75rem 0.75rem;
 }

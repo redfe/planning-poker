@@ -1,25 +1,32 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-export const Card = ({ size, point, isSelectable, isSelected, isClosed, handleClick, ...props }) => {
+export const Card = ({
+  size,
+  point,
+  isSelectable,
+  isSelected,
+  isClosed,
+  handleClick,
+  ...props
+}) => {
   return (
     <div
       className={[
-        "card",
-        ("card-" + size),
-        (isSelectable ? "card-selectable" : ""),
-        (isSelected ? "card-selected" : "card-notselected"),
-        (isClosed ? "card-closed" : "")
-      ].join(" ")}
+        'card',
+        'card-' + size,
+        isSelectable ? 'card-selectable' : '',
+        isSelected ? 'card-selected' : 'card-notselected',
+        isClosed ? 'card-closed' : '',
+      ].join(' ')}
       onClick={() => handleClick(point)}
       {...props}
     >
-      {isClosed ? "" : point}
+      {isClosed ? '' : point}
     </div>
   );
-}
+};
 
 Card.propTypes = {
   /**
@@ -49,10 +56,10 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  size: "medium",
+  size: 'medium',
   point: 0,
   isSelectable: false,
   isSelected: false,
   isClosed: false,
-  handleClick: () => { },
+  handleClick: () => {},
 };
