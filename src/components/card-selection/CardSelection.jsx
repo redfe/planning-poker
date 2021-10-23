@@ -6,6 +6,7 @@ import "./CardSelection.css"
 const points = ["0", "1", "2", "3", "5", "8", "13", "21", "34", "55", "?", "∞"];
 
 export const CardSelection = ({ selectedPoint, handleCardClick, ...props }) => {
+  console.log("begin render CardSelection.");
   return <div className="card-selection">
     {points.map((point) => {
 

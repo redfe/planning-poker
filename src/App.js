@@ -1,122 +1,110 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Page } from "./pages/Page"
-
 import "./App.css";
 
-export class App extends React.Component {
-  constructor(props) {
-    super(props);
-    let myName = undefined;
-    while (!myName) {
-      myName = window.prompt("your name");
-    }
-    const socket = setupWebsocket(this.getSetupedRoomId());
-    this.state = {
-      myName: myName,
-      estimaters: [],
-      isOend: false,
-      socket: socket,
-    };
-    this.handleSelectionCardClick = this.handleSelectionCardClick.bind(this);
-    this.handleOpenButtonClick = this.handleOpenButtonClick.bind(this);
-  }
+export const App = (props) => {
+  const [myName, setMyName] = useState();
+  const [estimaters, setEstimaters] = useState([]);
+  const [isOpend, setIsOpend] = useState(false);
+  const [socket, setSocket] = useState(undefined);
 
-  getSetupedRoomId() {
-    const search = window.location.search;
-    let roomId;
-    if (!search) {
-      const uuid = uuidv4();
-      window.location.hash = uuid;
-      window.history.replaceState("", "", "?" + uuid);
-      roomId = uuid;
-    } else {
-      roomId = search.substring(1);
+  const eventSubscribers = {
+    select: (event) => {
+      const newEstimaters = estimaters.slice();
+      let estimater = newEstimaters.find((e) => e.name === event.name);
+      if (!estimater) {
+        estimater = { name: event.name };
+        newEstimaters[newEstimaters.length] = estimater;
+      }
+      estimater["point"] = String(event.point);
+      setEstimaters(newEstimaters);
+    },
+    unselect: (event) => {
+      const newEstimaters = estimaters.filter(
+        (e) => e.name !== event.name
+      );
+      setEstimaters(newEstimaters);
+    },
+    open: () => {
+      setIsOpend(true);
+    },
+    return: () => {
+      setEstimaters([]);
+      setIsOpend(false);
+    },
+  };
+
+  // 初回のみ
+  useEffect(() => {
+    console.log("begin init.");
+    if (!myName) {
+      let name = myName;
+      while (!name) {
+        name = window.prompt("your name");
+        setMyName(name);
+      }
     }
-    return roomId;
-  }
-  componentDidMount() {
-    this.state.socket.on("do event", (event) => {
-      const subscriber = this.eventSubscribers[event.type];
+    setSocket(setupWebsocket(getSetupedRoomId()));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    console.log("begin socket setup.");
+    if (!socket) {
+      return;
+    }
+    socket.on("do event", (event) => {
+      const subscriber = eventSubscribers[event.type];
       if (subscriber) {
         subscriber(event);
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [socket])
+
+  const handleOpenButtonClick = () => {
+    const isOpendFlag =
+      estimaters.length === 0 ? false : !isOpend;
+    const eventType = isOpendFlag ? "open" : "return";
+    socket.emit("do event", { type: eventType });
   }
 
-  eventSubscribers = {
-    select: (event) => {
-      let estimaters = this.state.estimaters.slice();
-      let estimater = estimaters.find((e) => e.name === event.name);
-      if (!estimater) {
-        estimater = { name: event.name };
-        estimaters[estimaters.length] = estimater;
-      }
-      estimater["point"] = String(event.point);
-      this.setState({ estimaters: estimaters });
-    },
-    unselect: (event) => {
-      const estimaters = this.state.estimaters.filter(
-        (e) => e.name !== event.name
-      );
-      this.setState({ estimaters: estimaters });
-    },
-    open: (event) => {
-      this.setState({
-        isOpend: true,
-      });
-    },
-    return: (event) => {
-      this.setState({
-        estimaters: [],
-        isOpend: false,
-      });
-    },
-  };
-
-  handleOpenButtonClick() {
-    const isOpend =
-      this.state.estimaters.length === 0 ? false : !this.state.isOpend;
-    const eventType = isOpend ? "open" : "return";
-    this.state.socket.emit("do event", { type: eventType });
-  }
-
-  handleSelectionCardClick(point) {
-    const myEstimater = this.state.estimaters.find(
-      (e) => e.name === this.state.myName
+  const handleSelectionCardClick = (point) => {
+    const myEstimater = estimaters.find(
+      (e) => e.name === myName
     );
     const isOff = myEstimater && myEstimater.point === point;
-    let estimaters = this.state.estimaters.slice();
+    let newEstimaters = estimaters.slice();
     if (isOff) {
-      estimaters = this.state.estimaters.filter(
-        (e) => e.name !== this.state.myName
+      newEstimaters = estimaters.filter(
+        (e) => e.name !== myName
       );
     } else {
-      let myEstimater = estimaters.find((e) => e.name === this.state.myName);
+      let myEstimater = estimaters.find((e) => e.name === myName);
       if (!myEstimater) {
-        myEstimater = { name: this.state.myName };
-        estimaters[estimaters.length] = myEstimater;
+        myEstimater = { name: myName };
+        newEstimaters[newEstimaters.length] = myEstimater;
       }
       myEstimater["point"] = String(point);
     }
     const eventType = isOff ? "unselect" : "select";
-    this.state.socket.emit("do event", {
+    socket.emit("do event", {
       type: eventType,
-      name: this.state.myName,
+      name: myName,
       point: String(point),
     });
   }
 
-  render() {
-    return (
-      <Page
-        userName={this.state.myName}
-        isOpend={this.state.isOpend}
-        estimaters={this.state.estimaters}
-        handleOpenButtonClick={this.handleOpenButtonClick}
-        handleSelectionCardClick={this.handleSelectionCardClick} />
-    );
-  }
+  return (
+    <Page
+      userName={myName}
+      isOpend={isOpend}
+      estimaters={estimaters}
+      handleOpenButtonClick={handleOpenButtonClick}
+      handleSelectionCardClick={handleSelectionCardClick} />
+  );
+
 }
 
 function setupWebsocket(roomId) {
@@ -125,4 +113,16 @@ function setupWebsocket(roomId) {
   );
 }
 
-
+function getSetupedRoomId() {
+  const search = window.location.search;
+  let roomId;
+  if (!search) {
+    const uuid = uuidv4();
+    window.location.hash = uuid;
+    window.history.replaceState("", "", "?" + uuid);
+    roomId = uuid;
+  } else {
+    roomId = search.substring(1);
+  }
+  return roomId;
+}

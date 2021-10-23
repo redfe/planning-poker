@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './OpenButton.css';
 
 export const OpenButton = ({ isOpend, handleClick }) => {
+  console.log("begin render OpenButton.");
   const className = "openbutton";
   return (
     <div className={className} onClick={handleClick}>
